@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -31,3 +31,27 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class TicketSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ticket
+        fields = ['id','name', 'user']
+
+
+class TuyenXeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TuyenXe
+        fields = ['name', 'point_of_departure', 'destination', 'pricelist']
+
+
+class CarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = '__all__'
+
+
+class Ticket_detailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ticket_details
+        fields = '__all__'

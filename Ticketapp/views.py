@@ -7,8 +7,8 @@ from .models import *
 from .serializers import *
 
 
-class UserViewSet(viewsets.ViewSet, generics.CreateAPIView):
-    queryset = User.objects.filter(is_active=True)
+class UserViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
     def get_permissions(self):
@@ -21,3 +21,23 @@ class UserViewSet(viewsets.ViewSet, generics.CreateAPIView):
     def current_user(self, request):
         return Response(self.serializer_class(request.user, context={'request': request}).data,
                         status=status.HTTP_200_OK)
+
+
+class TicketViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
+    queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
+
+
+class TuyenXeViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
+    queryset = TuyenXe.objects.all()
+    serializer_class = TuyenXeSerializer
+
+
+class CarViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+
+
+class Ticket_detailsViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
+    queryset = Ticket_details.objects.all()
+    serializer_class = Ticket_detailsSerializer
