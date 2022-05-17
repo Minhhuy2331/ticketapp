@@ -21,7 +21,7 @@ class Ticket(ModelBase):
         return self.name
 
 
-class TuyenXe(ModelBase):
+class Buses(ModelBase):
     point_of_departure = models.CharField(max_length=20, unique=False)
     destination = models.CharField(max_length=20, unique=False)
     pricelist = models.IntegerField()
@@ -50,5 +50,5 @@ class Ticket_details(models.Model):
     seats = models.IntegerField()
     note = models.CharField(max_length=50)
     ticket = models.ForeignKey(Ticket, null=True, on_delete=models.SET_NULL)
-    tuyenXe = models.ForeignKey(TuyenXe, null=True, on_delete=models.SET_NULL)
+    tuyenXe = models.ForeignKey(Buses, null=True, on_delete=models.SET_NULL)
     car = models.ForeignKey(Car, null=True, on_delete=models.SET_NULL)

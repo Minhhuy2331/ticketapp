@@ -39,9 +39,9 @@ class TicketSerializer(serializers.ModelSerializer):
         fields = ['id','name', 'user']
 
 
-class TuyenXeSerializer(serializers.ModelSerializer):
+class BusesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TuyenXe
+        model = Buses
         fields = ['name', 'point_of_departure', 'destination', 'pricelist']
 
 

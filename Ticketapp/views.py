@@ -29,8 +29,8 @@ class TicketViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIVi
 
 
 class TuyenXeViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
-    queryset = TuyenXe.objects.all()
-    serializer_class = TuyenXeSerializer
+    queryset = Buses.objects.all()
+    serializer_class = BusesSerializer
 
 
 class CarViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
