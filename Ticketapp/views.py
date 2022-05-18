@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from rest_framework import viewsets, generics, status, permissions, mixins
+from rest_framework import viewsets, generics, status, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from .models import *
 from .perms import CommentOwnerPerms
 from .serializers import *
+from django.conf import settings
 
 
 class UserViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
@@ -42,3 +44,8 @@ class CarViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView)
 class Ticket_detailsViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
     queryset = Ticket_details.objects.all()
     serializer_class = Ticket_detailsSerializer
+
+
+class AuthInfo(APIView):
+    def get(self, request):
+        return Response(settings.OAUTH2_INFO, status=status.HTTP_200_OK)

@@ -14,4 +14,5 @@ router.register(prefix='Ticket_details', viewset=views.Ticket_detailsViewSet, ba
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin_site.urls),
+    path('oauth2-info/', views.AuthInfo.as_view()),
 ]
