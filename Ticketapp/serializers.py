@@ -50,7 +50,7 @@ class UserSerializer(serializers.ModelSerializer):
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
-        fields = ['id','name', 'user']
+        fields = ['name']
 
 
 class BusesSerializer(serializers.ModelSerializer):
