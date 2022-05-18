@@ -1,0 +1,10 @@
+{% extends 'admin/base_site.html' %}
+{% block content %}
+<h1>THỐNG KÊ MẬT ĐỘ CHUYẾN XE THEO TUYẾN</h1>
+<h4>So luong tuyen xe: {{ count }}</h4>
+<ul>
+    {% for s in stats %}
+    <li>{{ s.id }} - {{ s.Busroutes }}: {{ s.Ticket_details_count }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

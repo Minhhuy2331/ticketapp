@@ -22,11 +22,11 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Course API",
+        title="Ticket API",
         default_version='v1',
-        description="APIs for CourseApp",
-        contact=openapi.Contact(email="thanh.dh@ou.edu.vn"),
-        license=openapi.License(name="Dương Hữu Thành@2021"),
+        description="APIs for TicketApp",
+        contact=openapi.Contact(email="1951052076huy@ou.edu.vn"),
+        license=openapi.License(name="Trần Mạnh Huy@2021"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,)
