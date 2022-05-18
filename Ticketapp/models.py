@@ -8,6 +8,7 @@ class User(AbstractUser):
 
 class ModelBase(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    active = models.BooleanField(default=True)
 
     class Meta:
         abstract = True
@@ -15,7 +16,6 @@ class ModelBase(models.Model):
 
 class Ticket(ModelBase):
     booking_date = models.DateField(auto_now_add=True)
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -31,14 +31,14 @@ class Buses(ModelBase):
 
 
 class Range_of_vehicle(models.Model):
-    name = models.CharField(max_length=10, unique=False)
+    name = models.CharField(max_length=30, unique=False)
 
     def __str__(self):
         return self.name
 
 
 class Car(ModelBase):
-    license_plate = models.CharField(max_length=15, unique=True)
+    license_plate = models.CharField(max_length=15, unique=True) #biển số xe
     number_of_seats = models.IntegerField()
     range_of_vehicle = models.ForeignKey(Range_of_vehicle, null=True, on_delete=models.SET_NULL)
 
@@ -47,8 +47,18 @@ class Car(ModelBase):
 
 
 class Ticket_details(models.Model):
-    seats = models.IntegerField()
+    seats = models.CharField(max_length=4)
     note = models.CharField(max_length=50)
     ticket = models.ForeignKey(Ticket, null=True, on_delete=models.SET_NULL)
-    tuyenXe = models.ForeignKey(Buses, null=True, on_delete=models.SET_NULL)
+    Buses = models.ForeignKey(Buses, null=True, on_delete=models.SET_NULL)
     car = models.ForeignKey(Car, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+
+
+class Comment(models.Model):
+    content = models.TextField()
+    Ticket_details = models.ForeignKey(Ticket_details, related_name='comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content

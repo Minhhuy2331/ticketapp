@@ -33,6 +33,20 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
+# class CreateCommentSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Comment
+#         fields = ['content', 'user', 'Ticket_details']
+#
+#
+# class CommentSerializer(serializers.ModelSerializer):
+#     user = UserSerializer()
+#
+#     class Meta:
+#         model = Comment
+#         exclude = ['active']
+
+
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
