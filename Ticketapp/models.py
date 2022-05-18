@@ -14,21 +14,6 @@ class ModelBase(models.Model):
         abstract = True
 
 
-class Bus(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-
-    def __str__(self):
-        return self.id
-
-
-class Ticket(ModelBase):
-    booking_date = models.DateField(auto_now_add=True)
-    bus = models.ForeignKey(Bus, null=True, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
 class Busroutes(ModelBase):
     point_of_departure = models.CharField(max_length=20, unique=False)
     destination = models.CharField(max_length=20, unique=False)
@@ -36,6 +21,12 @@ class Busroutes(ModelBase):
 
     def __str__(self):
         return self.name
+
+
+class Bus(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    Busroutes = models.ForeignKey(Busroutes, null=True, related_name='bus', related_query_name='my_bus', on_delete = models.CASCADE)
+    booking_date = models.DateField(auto_now_add=True, null=True)
 
 
 class Range_of_vehicle(models.Model):
@@ -57,10 +48,9 @@ class Car(ModelBase):
 class Ticket_details(models.Model):
     seats = models.CharField(max_length=4)
     note = models.CharField(max_length=50)
-    ticket = models.ForeignKey(Ticket, null=True, on_delete=models.SET_NULL)
-    Busroutes = models.ForeignKey(Busroutes, null=True, on_delete=models.SET_NULL)
+    bus = models.ForeignKey(Bus, null=True, on_delete=models.SET_NULL)
     car = models.ForeignKey(Car, null=True, on_delete=models.SET_NULL)
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, unique=False, on_delete=models.SET_NULL)
 
 
 class Comment(models.Model):

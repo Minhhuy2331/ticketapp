@@ -24,9 +24,9 @@ class UserViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView
                         status=status.HTTP_200_OK)
 
 
-class TicketViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
-    queryset = Ticket.objects.all()
-    serializer_class = TicketSerializer
+class BusViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):
+    queryset = Bus.objects.all()
+    serializer_class = BusSerializer
 
 
 class BusroutesViewSet(viewsets.ViewSet, generics.CreateAPIView, generics.ListAPIView):

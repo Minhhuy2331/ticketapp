@@ -33,10 +33,10 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class TicketSerializer(serializers.ModelSerializer):
+class BusSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Ticket
-        fields = ['name']
+        model = Bus
+        fields = ['user', 'Busroutes', 'booking_date']
 
 
 class BusroutesSerializer(serializers.ModelSerializer):
